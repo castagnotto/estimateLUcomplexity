@@ -2,11 +2,20 @@
 % validation data
 
 %% List of collections on math.nist.gov/MatrixMarket
-clc
+
+%   Generate the list of matrices
 src = 'http://math.nist.gov/MatrixMarket/data/';
+[~, matrices]   = readMaxtrixMarketHomepage(src);
+nMatrices       = length(matrices);
+fprintf(1,'\n\nNumber of matrices found on Matrix Market: \t%6i\n',nMatrices);
 
-[~, matrices] = readMaxtrixMarketHomepage(src);
+%   Save the list
+save(sprintf('data/MatrixMarket_listOfMatrices_%s.mat',datestr(now,'yyyymmdd_HHMM')),'matrices');
+fid = fopen('data/MatrixMarket_listOfMatrices.txt','w');
+fprintf(fid,'%s\n',matrices{:});
+fclose(fid);
 
-
-%   Reading the matrices
-% [A, rows, cols, entries] = mmread(filename);
+%   Download the matrices onto .data/
+for iMat = 1:nMatrices
+    
+end

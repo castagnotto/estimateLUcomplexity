@@ -15,6 +15,10 @@ function    newLink  = completeUrl(link,url)
             newLink = link;
             return
         end 
+    elseif idx == 1
+        %The link is already valid
+        newLink = link;
+        return
     end
     
     % create the full link
